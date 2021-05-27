@@ -1,0 +1,47 @@
+@import "./colors";
+
+.welcome {
+  flex: 1 1 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .players {
+    display: flex;
+    align-items: center;
+
+    input {
+      padding: 1rem;
+      font-size: 1.5rem;
+      border: 0;
+      background-color: transparent;
+      border-bottom: 1px solid gray;
+    }
+
+    .vs {
+      margin: 0 3rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  button {
+    padding: 0.75rem;
+    font-size: 1.5rem;
+    margin: 2.5rem 0;
+    background-color: transparent;
+    border: 3px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:focus {
+      outline: 3px dotted gray;
+    }
+
+    &:hover {
+      background-color: black;
+      color: $bg-color;
+    }
+  }
+}
