@@ -1,15 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
+import { Toast } from "@innovaccer/design-system";
 import styles from "../styles/Welcome.module.scss";
 
-export const Welcome = () => {
+export const Welcome = ({ setPage }) => {
+  const [player1, setPlayer1] = useState("");
+  const [player2, setPlayer2] = useState("");
+  const [alert, setAlert] = useState({
+    state: false,
+    message: ""
+  });
+
+  const createAlert = msg => {
+    setAlert({ state: true, message: msg });
+  };
+
+  const handleClick = () => {
+    if (player1 === "") {
+      createAlert("Player 1 field is Empty!");
+      return;
+    }
+    if (player2 === "") {
+      createAlert("Player 2 field is Empty!");
+      return;
+    }
+    handleAlertClose();
+    setPage(1);
+  };
+
+  const handleAlertClose = () => {
+    setAlert({ state: false, message: "" });
+  };
+
   return (
     <div className={styles["welcome"]}>
       <div className={styles["players"]}>
-        <input type="text" placeholder="Player 1" />
+        <input
+          type="text"
+          placeholder="Player 1"
+          value={player1}
+          onChange={e => setPlayer1(e.target.value)}
+        />
         <div className={styles["vs"]}>VS</div>
-        <input type="text" placeholder="Player 2" />
+        <input
+          type="text"
+          placeholder="Player 2"
+          value={player2}
+          onChange={e => setPlayer2(e.target.value)}
+        />
       </div>
-      <button>Start</button>
+      <button onClick={() => handleClick()}>Start</button>
+      {alert.state && (
+        <Toast
+          appearance="alert"
+          title={alert.message}
+          className="alert"
+          onClose={() => handleAlertClose()}
+        />
+      )}
     </div>
   );
 };
