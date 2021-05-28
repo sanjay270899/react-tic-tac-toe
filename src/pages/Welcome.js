@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import { Toast } from "@innovaccer/design-system";
 import styles from "../styles/Welcome.module.scss";
 
-export const Welcome = ({ setPage }) => {
-  const [player1, setPlayer1] = useState("");
-  const [player2, setPlayer2] = useState("");
+export const Welcome = ({
+  setPage,
+  player1,
+  player2,
+  setPlayer1,
+  setPlayer2
+}) => {
   const [alert, setAlert] = useState({
     state: false,
     message: ""
@@ -14,6 +18,7 @@ export const Welcome = ({ setPage }) => {
     setAlert({ state: true, message: msg });
   };
 
+  // Function on start button click
   const handleClick = () => {
     if (player1 === "") {
       createAlert("Player 1 field is Empty!");
